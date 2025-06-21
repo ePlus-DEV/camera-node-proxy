@@ -22,6 +22,14 @@ Start the server:
 npm run start
 ```
 
+Run tests:
+
+```bash
+npm run test
+```
+
+> **Recommended:** Use Node.js version 22 or higher for best compatibility.
+
 ## Configuration
 
 Edit the configuration file (if available) to add your camera sources.
