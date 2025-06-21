@@ -1,0 +1,22 @@
+{
+  "name": "camera-node-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "camera",
+    "proxy",
+    "server",
+    "nodejs"
+  ],
+  "author": "David Nguyen",
+  "license": "MIT",
+  "description": "A proxy server for camera feeds",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "express": "^5.1.0"
+  }
+}
