@@ -1,18 +1,16 @@
+// app.js
 const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.get('/camera', async (req, res) => {
     const { id, bg = 'black' } = req.query;
 
     if (!id) return res.status(400).send('Missing camera id');
 
-    const cameraUrl = `https://giaothong.hochiminhcity.gov.vn:8007/Render/CameraHandler.ashx`;
-    
     try {
-        const response = await axios.get(cameraUrl, {
+        const response = await axios.get('https://giaothong.hochiminhcity.gov.vn:8007/Render/CameraHandler.ashx', {
             responseType: 'stream',
             params: { id, bg },
             headers: {
@@ -28,13 +26,10 @@ app.get('/camera', async (req, res) => {
 
         res.set('Content-Type', response.headers['content-type']);
         response.data.pipe(res);
-
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Không lấy được ảnh từ server nguồn.');
+        console.error('Error fetching camera image:', error);
+        res.status(500).send('Error fetching camera image');
     }
 });
 
-app.listen(PORT);
-
-module.exports = app; // Export the app for testing purposes
+module.exports = app;
