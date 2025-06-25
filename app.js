@@ -5,6 +5,20 @@ const axios = require('axios');
 const app = express();
 
 app.get('/camera', async (req, res) => {
+    const origin = req.get('origin') || req.get('referer') || '';
+    const allowedDomain = 'eplus.dev';
+
+    try {
+        const url = new URL(origin);
+        const hostname = url.hostname;
+
+        if (hostname !== allowedDomain && !hostname.endsWith(`.${allowedDomain}`)) {
+            return res.status(403).send('Access denied');
+        }
+    } catch (e) {
+        return res.status(403).send('Invalid origin');
+    }
+
     const { id, bg = 'black' } = req.query;
 
     if (!id) return res.status(400).send('Missing camera id');
