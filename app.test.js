@@ -10,7 +10,7 @@ describe('GET /camera', () => {
 
     test('valid id param returns 200 or 500 depending on server', async () => {
         const currentTime = Date.now();
-        const res = await request(app).get(`/camera?id=5a8241105058170011f6eaa6&bg=black&time=${currentTime}`);
+        const res = await request(app).get(`/camera?id=5a8241105058170011f6eaa6&bg=black&time=${currentTime}`).set('Origin', 'https://eplus.dev');;
         expect([200, 500]).toContain(res.status);
     });
 });
