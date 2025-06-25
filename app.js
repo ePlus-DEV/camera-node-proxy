@@ -32,4 +32,8 @@ app.get('/camera', async (req, res) => {
     }
 });
 
+app.get('/ping', (req, res) => {
+    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 module.exports = app;
